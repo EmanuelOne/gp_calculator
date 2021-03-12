@@ -1,0 +1,36 @@
+body {
+  background-color: #0d161f;
+  animation-name: slidedown 300ms ease-in;
+}
+
+@keyframes slidedown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+select {
+  outline: none !important;
+  background: transparent;
+  width: 200px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px 15px !important;
+  color: white;
+  border: 2px solid grey;
+}
+
+select:focus {
+  background-color: white;
+  color: black;
+}
+
+button {
+  outline: none !important;
+  border: 1px solid grey;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
