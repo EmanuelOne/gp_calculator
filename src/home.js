@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import getScore from "./calculate";
 import Course from "./Components/Course";
 import { Form } from "./Components/elements";
-import { FaEmpire } from "react-icons/fa";
+import { FaEmpire, FaMinus, FaPlus } from "react-icons/fa";
 
 const Home = ({ setState }) => {
+  const [courseNumber, setCourse] = useState(3);
+
   const history = useHistory();
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,17 +38,47 @@ const Home = ({ setState }) => {
       setState(GP);
     }
   }
+  const course = Array.from(Array(courseNumber).keys());
+  const [small, setSmall] = useState(true);
+  setTimeout(() => {
+    setSmall(false);
+  }, 2000);
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <FaEmpire style={{}} />
+        <h4 className="top-text">Gp Calculator</h4>
+        <FaEmpire />
 
-        <Course />
-        <Course />
-        <Course />
-        <Course />
+        {course.map((e) => (
+          <Course />
+        ))}
         <button type="submit">Submit</button>
       </Form>
+
+      <div className="btns">
+        <div className="div">
+          <FaMinus
+            className="minus"
+            onClick={() => {
+              if (courseNumber >= 4) setCourse(courseNumber - 1);
+            }}
+          />
+          {small && <small>Remove course</small>}
+        </div>
+        <div className="div">
+          <FaPlus
+            className="plus"
+            onClick={() => {
+              setCourse(courseNumber + 1);
+            }}
+          />
+          {small && <small>Add course</small>}
+        </div>
+      </div>
+      <h6>
+        &copy; All Right Reserved <br />
+        Node_X & DevClout
+      </h6>
     </>
   );
 };
